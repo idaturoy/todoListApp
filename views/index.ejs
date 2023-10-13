@@ -1,0 +1,41 @@
+<%- include('partials/header.ejs') %>
+
+<section class="text-center mb-md-0 me-md-auto p-2 mb-4">
+    <a href="/private" class="btn btn-light rounded-pill px-3">Private</a>
+    <a href="/work" class="btn btn-light rounded-pill px-3">Work</a>
+</section>
+
+<div class="d-flex flex-column p-4 gap-4 py-md-5 align-items-center justify-content-center">
+    <h1><%= list.listName %></h1>
+
+    <div class="list-group">
+        <% if (locals.list.items) { %>
+            <% list.items.forEach(item => { %>
+                <label class="list-group-item d-flex gap-3">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
+                    <span class="pt-1 form-checked-content">
+                      <strong>
+                        <%= item.name %>
+                      </strong>
+                    </span>
+                </label>
+            <% }); %>    
+        <% } %>
+
+      <label class="list-group-item d-flex gap-3 bg-body-tertiary">
+        <form action="/submit" method="post">
+
+            <input class="form-check-input form-check-input-placeholder bg-body-tertiary flex-shrink-0 pe-none" disabled="" type="checkbox" value="" style="font-size: 1.375em;" >
+            <span class="pt-1 form-checked-content">
+                <span contenteditable="true" class="w-100">
+                    <input class="px-1 bg-body-tertiary" style="border-style: hidden;" type="text" name="newItem" placeholder="create new item">
+                </span>
+            </span>
+            <button class="btn btn-warning rounded-pill px-3" type="submit"> add </button>
+        </form>
+
+      </label>
+    </div>
+  </div>
+
+<%- include('partials/footer.ejs') %>
